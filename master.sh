@@ -1,6 +1,10 @@
 #!/bin/bash
 
+deepmip_dir="/g/data/y99/dkh157/DeepMIP2/boundary_conditions"
+topogfile="${deepmip_dir}/deepmip2-eocene-paleogeography_20260624.nc"
+
 # 1. Interp topography to ocean grid
+./make_topog.py -i ${topogfile} -o topog_conserve.nc
 
 # 2. Adjust for narrow straits and isolated grid cells
 
