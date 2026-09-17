@@ -7,9 +7,17 @@ topogfile="${deepmip_dir}/deepmip2-eocene-paleogeography_20260624.nc"
 # ./make_topog.py -i ${topogfile} -o topog_conserve.nc
 
 # 2. Adjust for narrow straits and isolated grid cells
-./adjust_topo.py -i topog_conserve.nc -o topog.nc
+# Do several iterations to ensure grid cell adjustment has "converged"
+# for i in {01..06}; do 
+# ./adjust_topo.py -i topog_conserve.nc -o topog.nc
+# done
+
+# 2a. Make manual adjustments to topog
+# TODO: David will add in manual adjustments here.
 
 # 3. Make coupler exchange grids
+./make_coupler_mosaic --atmos_mosaic atmos_mosaic.nc --ocean_mosaic ocean_mosaic.nc --ocean_topog topog.nc --land_mosaic land_mosaic.nc 
+mv mosaic.nc grid_spec.nc
 
 # 4. Make atmosphere topography
 
