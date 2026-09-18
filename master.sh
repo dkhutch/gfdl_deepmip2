@@ -16,10 +16,11 @@ topogfile="${deepmip_dir}/deepmip2-eocene-paleogeography_20260624.nc"
 # TODO: David will add in manual adjustments here.
 
 # 3. Make coupler exchange grids
-./make_coupler_mosaic --atmos_mosaic atmos_mosaic.nc --ocean_mosaic ocean_mosaic.nc --ocean_topog topog.nc --land_mosaic land_mosaic.nc 
-mv mosaic.nc grid_spec.nc
+# ./make_coupler_mosaic --atmos_mosaic atmos_mosaic.nc --ocean_mosaic ocean_mosaic.nc --ocean_topog topog.nc --land_mosaic land_mosaic.nc 
+# mv mosaic.nc grid_spec.nc
 
 # 4. Make atmosphere topography
+./atmos_topog.py -i ${topogfile} -o atmos_topog.nc
 
 # 5. Create input file for mountain drag parameterisation
 
