@@ -19,16 +19,18 @@ topogfile="${deepmip_dir}/deepmip2-eocene-paleogeography_20260624.nc"
 # ./make_coupler_mosaic --atmos_mosaic atmos_mosaic.nc --ocean_mosaic ocean_mosaic.nc --ocean_topog topog.nc --land_mosaic land_mosaic.nc 
 # mv mosaic.nc grid_spec.nc
 
-# 4. Make atmosphere topography
-./atmos_topog.py -i ${topogfile} -o atmos_topog.nc
+# 4. Make atmosphere topography, and append to atmos restart file:
+# ./atmos_topog.py -i ${topogfile} -o atmos_topog.nc
+# ncks -A -v Surface_geopotential atmos_topog.nc fv_rst.res.nc
 
 # 5. Create input file for mountain drag parameterisation
+./mountain_topog.py -i ${topogfile} -o mountain_topog.nc
 
-# 6. Create river runoff
+# 6. Make Vegetation from DeepMIP input files
 
-# 7. Make Vegetation from DeepMIP input files
+# 7. Make soil type and groundwater field
 
-# 8. Make soil type and groundwater field
+# 8. Create river runoff
 
 # 9. Set greenhouse gases
 
