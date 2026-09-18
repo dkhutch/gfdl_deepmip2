@@ -2,6 +2,7 @@
 
 deepmip_dir="/g/data/y99/dkh157/DeepMIP2/boundary_conditions"
 topogfile="${deepmip_dir}/deepmip2-eocene-paleogeography_20260624.nc"
+vegfile="${deepmip_dir}/DeepMIP_VegetationHybrid_filled_highres_mask_fin3_20260624.nc"
 
 # 1. Interp topography to ocean grid
 # ./make_topog.py -i ${topogfile} -o topog_conserve.nc
@@ -24,18 +25,17 @@ topogfile="${deepmip_dir}/deepmip2-eocene-paleogeography_20260624.nc"
 # ncks -A -v Surface_geopotential atmos_topog.nc fv_rst.res.nc
 
 # 5. Create input file for mountain drag parameterisation
-./mountain_topog.py -i ${topogfile} -o mountain_topog.nc
+# ./mountain_topog.py -i ${topogfile} -o mountain_topog.nc
 
-# 6. Make Vegetation from DeepMIP input files
+# 6. Make Vegetation from DeepMIP input files (and soil type and groundwater files)
+./convert_lpj_cm2.1.py -i ${vegfile} 
 
-# 7. Make soil type and groundwater field
+# 7. Create river runoff
 
-# 8. Create river runoff
+# 8. Set greenhouse gases
 
-# 9. Set greenhouse gases
+# 9. Set aerosol forcing
 
-# 10. Set aerosol forcing
+# 10. Make tidal forcing fields (bottom roughness)
 
-# 11. Make tidal forcing fields (bottom roughness)
-
-# 12. Make temperature-salinity restart file for the ocean
+# 11. Make temperature-salinity restart file for the ocean
